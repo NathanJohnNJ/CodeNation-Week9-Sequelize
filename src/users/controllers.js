@@ -17,6 +17,23 @@ const registerUser = async (req, res) => {
     }
 };
 
+const getUsers = async (req, res) => {
+    try {
+        const users = await User.findAll({})
+        for (let user of users){
+            user.password="";
+        }
+        res.status(201).json({
+            message: "Found all users.",
+            users:users
+        })
+    } catch (error) {
+        res.status(501).json({errorMessage: error.message, error: error});
+        console.log(error);
+    }
+};
+
 module.exports = {
-    registerUser
+    registerUser,
+    getUsers
 }
