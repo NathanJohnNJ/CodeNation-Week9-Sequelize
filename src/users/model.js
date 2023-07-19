@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 
 const connection = require("../db/connection");
 
-const User = connection.define("Author", {
+const User = connection.define("Users", {
     username: {
         type: DataTypes.STRING,
         allowNull: false
@@ -14,6 +14,9 @@ const User = connection.define("Author", {
     password: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    token: {
+        type: DataTypes.STRING
     }},
     {indexes: [{unique: true, fields:["username", "email"]}]}
 )
